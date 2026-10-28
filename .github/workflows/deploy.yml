@@ -1,7 +1,7 @@
 ```yaml
 name: Deploy 1FC Trade Login Page
 
-on:
+'on':
   push:
     branches:
       - main
