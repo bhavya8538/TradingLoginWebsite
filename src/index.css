@@ -6,48 +6,56 @@
   font-style: normal;
   font-weight: 400;
 }
+
 @font-face {
   font-family: "Inter:Semi Bold";
   src: url("https://static.figma.com/font/Inter_1") format("woff2");
   font-style: normal;
   font-weight: 600;
 }
+
 @font-face {
   font-family: "Noto Sans Math:Regular";
   src: url("https://static.figma.com/font/NotoSansMath-Regular_1") format("woff2");
   font-style: normal;
   font-weight: 400;
 }
+
 @font-face {
   font-family: "Noto Sans Symbols2:Regular";
   src: url("https://static.figma.com/font/NotoSansSymbols2-Regular_5") format("woff2");
   font-style: normal;
   font-weight: 400;
 }
+
 @font-face {
   font-family: "Noto Sans Symbols:Medium";
   src: url("https://static.figma.com/font/NotoSansSymbols-VF_2") format("woff2");
   font-style: normal;
   font-weight: 500;
 }
+
 @font-face {
   font-family: "Noto Sans:Medium";
   src: url("https://static.figma.com/font/NotoSans-VF_3") format("woff2");
   font-style: normal;
   font-weight: 500;
 }
+
 @font-face {
   font-family: "Poppins:Medium";
   src: url("https://static.figma.com/font/Poppins-Medium_6") format("woff2");
   font-style: normal;
   font-weight: 500;
 }
+
 @font-face {
   font-family: "Poppins:Regular";
   src: url("https://static.figma.com/font/Poppins-Regular_6") format("woff2");
   font-style: normal;
   font-weight: 400;
 }
+
 @font-face {
   font-family: "Poppins:SemiBold";
   src: url("https://static.figma.com/font/Poppins-SemiBold_6") format("woff2");
@@ -219,6 +227,7 @@ a {
   letter-spacing: -0.03em;
 }
 
+/* Mascot and corner decorations */
 .mascot-wrap {
   position: absolute;
   z-index: 1;
@@ -228,29 +237,46 @@ a {
   height: 93.63%;
 }
 
-.mascot {
+/* Mascot and decorations are one responsive composition.
+   cqw sizes the corners from the mascot container, not the browser viewport. */
+.mascot-art {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  container-type: inline-size;
+}
+
+/* Mascot image */
+.mascot-art .mascot {
+  position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
+  pointer-events: none;
 }
 
-.corner {
+/* Corner decorations */
+.mascot-art .corner {
   position: absolute;
   z-index: 3;
-  width: 42px;
-  height: 42px;
-  border: 18px solid #eae25a;
+  width: 7.4cqw;
+  height: 7.4cqw;
+  border: 3.17cqw solid #eae25a;
+  box-sizing: border-box;
+  pointer-events: none;
 }
 
-.corner-left {
+/* Left corner */
+.mascot-art .corner-left {
   top: 12.56%;
   left: 4.41%;
   border-top: 0;
   border-right: 0;
 }
 
-.corner-top {
+/* Top corner */
+.mascot-art .corner-top {
   top: -1.29%;
   left: 32.8%;
   border-bottom: 0;
@@ -370,7 +396,7 @@ form {
   border-radius: 12px;
 }
 
-.input-shell > img {
+.input-shell>img {
   flex: 0 0 auto;
   width: clamp(20px, 1.8vw, 35px);
   max-height: 38px;
@@ -520,12 +546,7 @@ button:hover {
     padding-inline: max(24px, calc((100vw - 560px) / 2));
   }
 
-  .mascot-wrap {
-    width: 58%;
-    left: auto;
-    right: 0;
-  }
-
+  
   .promo-copy {
     width: 54%;
   }
@@ -555,13 +576,7 @@ button:hover {
     font-size: 0.68rem;
   }
 
-  .mascot-wrap {
-    top: 18%;
-    right: -17%;
-    width: 88%;
-    height: 68%;
-  }
-
+  
   .downloads {
     left: 6%;
     bottom: 5%;
@@ -584,13 +599,477 @@ button:hover {
     text-align: right;
   }
 
-  .corner {
-    width: 30px;
-    height: 30px;
-    border-width: 12px;
-  }
 
   .company {
     font-size: 1.2rem;
+  }
+}
+
+
+
+
+/* ==========================================================
+   RESPONSIVE LAYOUT SYSTEM
+   Grid/Flexbox flow for layout; one shared container for mascot + corners.
+   ========================================================== */
+:root {
+  --page-bg: #043335;
+  --accent: #eae26a;
+  --panel-gap: clamp(18px, 2vw, 36px);
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100dvh;
+  overflow-x: hidden;
+  background: var(--page-bg);
+}
+
+.page-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 2.23fr) minmax(350px, 1fr);
+  width: 100%;
+  min-height: 100dvh;
+  overflow: clip;
+}
+
+.promo-panel,
+.login-panel {
+  min-width: 0;
+  min-height: 100dvh;
+}
+
+/* Keep the decorative composition anchored to the promo panel. */
+.promo-panel {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.mascot-wrap {
+  position: absolute;
+  z-index: 1;
+  top: 3%;
+  left: 55.9%;
+  width: 42.8%;
+  height: 93.5%;
+  min-width: 0;
+  min-height: 0;
+}
+
+.mascot-art {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  container-type: size;
+}
+
+.mascot-art .mascot {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  object-position: center;
+  pointer-events: none;
+}
+
+/* Corner size scales with the mascot container, not the viewport. */
+.mascot-art .corner {
+  position: absolute;
+  z-index: 3;
+  width: clamp(24px, 7.4cqw, 42px);
+  height: clamp(24px, 7.4cqw, 42px);
+  border: clamp(10px, 3.2cqw, 18px) solid #eae25a;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.mascot-art .corner-left {
+  top: 12.56%;
+  left: 4.41%;
+  border-top: 0;
+  border-right: 0;
+}
+
+.mascot-art .corner-top {
+  top: -1.29%;
+  left: 32.8%;
+  border-bottom: 0;
+  border-left: 0;
+}
+
+/* Use a flexible form stack rather than fixed vertical coordinates. */
+.login-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(14px, 1.3vw, 26px) clamp(18px, 2.35vw, 45px) 18px;
+  background: #043335;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.login-panel .brand {
+  display: block;
+  flex: 0 0 auto;
+  width: min(68%, 327px);
+  max-height: 11vh;
+  object-fit: contain;
+}
+
+.login-panel .company {
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.login-panel form {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 640px;
+}
+
+.login-panel .field,
+.login-panel .otp-row,
+.login-panel .input-shell,
+.login-panel .login-button,
+.login-panel .account-button {
+  min-width: 0;
+}
+
+.login-panel .otp-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(78px, 7vw, 135px);
+  align-items: end;
+  gap: clamp(6px, 0.7vw, 10px);
+}
+
+.login-panel .input-shell {
+  width: 100%;
+}
+
+.login-panel footer {
+  margin-top: auto;
+  padding-top: 12px;
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+}
+
+.downloads {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(14px, 3.2vw, 70px);
+}
+
+.qr {
+  width: clamp(76px, 10.3vw, 198px);
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.store-badge {
+  width: clamp(68px, 7.3vw, 140px);
+  height: auto;
+  margin-top: clamp(-1.6rem, -1.4vw, -0.5rem);
+  object-fit: contain;
+}
+
+.registration {
+  max-width: 58%;
+  line-height: 1.35;
+  text-align: right;
+}
+
+/* Short laptop screens: keep the desktop two-column layout and tighten flow. */
+@media (min-width: 1101px) and (max-height: 820px) {
+  .page-shell,
+  .promo-panel,
+  .login-panel {
+    min-height: 100dvh;
+  }
+
+  .login-panel {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .login-panel .brand {
+    width: min(56%, 230px);
+    max-height: 8vh;
+  }
+
+  .login-panel .company {
+    font-size: clamp(1.05rem, 1.55vw, 1.75rem);
+    line-height: 1.1;
+    margin-top: 0;
+  }
+
+  .login-panel .welcome {
+    margin-top: clamp(5px, 0.8vh, 10px);
+  }
+
+  .login-panel .welcome h3 {
+    font-size: clamp(1rem, 1.25vw, 1.45rem);
+  }
+
+  .login-panel form {
+    margin-top: clamp(8px, 1.1vh, 12px);
+  }
+
+  .login-panel .field {
+    margin-bottom: clamp(5px, 0.9vh, 9px);
+  }
+
+  .login-panel .field-label {
+    margin-bottom: 0.25rem;
+    font-size: clamp(0.65rem, 0.72vw, 0.82rem);
+  }
+
+  .login-panel .input-shell,
+  .login-panel .otp-button {
+    height: clamp(38px, 5.2vh, 46px);
+    border-radius: 9px;
+  }
+
+  .login-panel .input-shell input {
+    font-size: clamp(0.68rem, 0.75vw, 0.82rem);
+  }
+
+  .login-panel .forgot {
+    margin-top: 0.3rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .login-panel .login-button,
+  .login-panel .account-button {
+    height: clamp(40px, 5.2vh, 48px);
+    border-radius: 9px;
+  }
+
+  .login-panel .or {
+    margin-top: clamp(5px, 0.8vh, 9px);
+    margin-bottom: clamp(5px, 0.8vh, 9px);
+  }
+
+  .login-panel footer {
+    padding-top: 5px;
+    font-size: clamp(0.52rem, 0.62vw, 0.72rem);
+  }
+
+  .downloads {
+    bottom: 3.5%;
+    gap: clamp(14px, 3vw, 48px);
+  }
+
+  .qr {
+    width: clamp(76px, 8.2vw, 150px);
+  }
+
+  .store-badge {
+    width: clamp(68px, 6vw, 110px);
+  }
+}
+
+/* Very short laptop viewport (e.g. 1366 x 768). */
+@media (min-width: 1101px) and (max-height: 700px) {
+  .promo-copy {
+    top: 6%;
+  }
+
+  .promo-copy h1 {
+    font-size: clamp(1.8rem, 2.8vw, 3rem);
+  }
+
+  .promo-copy h2 {
+    font-size: clamp(1.35rem, 2vw, 2.2rem);
+  }
+
+  .promo-copy p {
+    margin-top: 0.8em;
+  }
+
+  .mascot-wrap {
+    top: 2%;
+    height: 91%;
+  }
+}
+
+/* Tablet and narrow layouts: stack panels instead of squeezing them. */
+@media (max-width: 1100px) {
+  .page-shell {
+    grid-template-columns: minmax(0, 1fr);
+    overflow: visible;
+  }
+
+  .promo-panel {
+    min-height: clamp(600px, 88svh, 820px);
+  }
+
+  .login-panel {
+    min-height: auto;
+    padding: 28px clamp(20px, 6vw, 64px) 22px;
+  }
+
+  .login-panel .brand {
+    width: min(45%, 280px);
+    max-height: none;
+  }
+
+  .login-panel form {
+    width: min(100%, 560px);
+  }
+
+  .login-panel footer {
+    margin-top: 28px;
+  }
+
+  .mascot-wrap {
+    top: 8%;
+    left: auto;
+    right: 0;
+    width: 58%;
+    height: 78%;
+  }
+}
+
+@media (max-width: 620px) {
+  .promo-panel {
+    min-height: clamp(570px, 86svh, 700px);
+  }
+
+  .promo-copy {
+    top: 5%;
+    left: 6%;
+    width: 88%;
+  }
+
+  .promo-copy h1 {
+    font-size: clamp(1.75rem, 7vw, 2.4rem);
+    line-height: 1.18;
+  }
+
+  .promo-copy h2 {
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
+    line-height: 1.1;
+  }
+
+  .promo-copy p {
+    max-width: 66%;
+    font-size: clamp(0.65rem, 2.6vw, 0.8rem);
+  }
+
+  .mascot-wrap {
+    top: 21%;
+    right: -12%;
+    left: auto;
+    width: 78%;
+    height: 62%;
+  }
+
+  .mascot-art .corner {
+    width: clamp(22px, 7.4cqw, 28px);
+    height: clamp(22px, 7.4cqw, 28px);
+    border-width: clamp(9px, 3.2cqw, 11px);
+  }
+
+  .downloads {
+    left: 6%;
+    bottom: 5%;
+    gap: clamp(12px, 5vw, 24px);
+  }
+
+  .qr {
+    width: clamp(72px, 21vw, 100px);
+  }
+
+  .store-badge {
+    width: clamp(64px, 18vw, 82px);
+  }
+
+  .registration {
+    right: 4%;
+    bottom: 1%;
+    max-width: 58%;
+    font-size: clamp(0.35rem, 1.4vw, 0.48rem);
+    text-align: right;
+  }
+
+  .login-panel {
+    padding-inline: 20px;
+  }
+
+  .login-panel .brand {
+    width: min(58%, 240px);
+  }
+
+  .login-panel .company {
+    font-size: clamp(1.05rem, 5vw, 1.35rem);
+  }
+
+  .login-panel .field-label {
+    font-size: clamp(0.7rem, 3vw, 0.9rem);
+  }
+
+  .login-panel .input-shell {
+    height: clamp(46px, 12vw, 54px);
+    padding-inline: 12px;
+    border-radius: 10px;
+  }
+
+  .login-panel .input-shell > img {
+    width: clamp(18px, 5vw, 23px);
+  }
+
+  .login-panel .input-shell input {
+    margin-left: 10px;
+    font-size: clamp(0.72rem, 3.2vw, 0.9rem);
+  }
+
+  .login-panel .otp-button {
+    height: clamp(46px, 12vw, 54px);
+    font-size: clamp(0.68rem, 3vw, 0.85rem);
+  }
+
+  .login-panel .login-button,
+  .login-panel .account-button {
+    height: clamp(48px, 13vw, 58px);
+    font-size: clamp(0.8rem, 3.5vw, 1rem);
+  }
+
+  .login-panel footer {
+    font-size: clamp(0.55rem, 2.6vw, 0.75rem);
+    letter-spacing: 0.04em;
+  }
+}
+
+@media (max-width: 360px) {
+  .promo-copy p {
+    max-width: 72%;
+  }
+
+  .mascot-wrap {
+    right: -19%;
+    width: 84%;
+  }
+
+  .login-panel .otp-row {
+    grid-template-columns: minmax(0, 1fr) 78px;
+  }
+
+  .downloads {
+    gap: 10px;
   }
 }

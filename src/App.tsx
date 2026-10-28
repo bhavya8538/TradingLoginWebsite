@@ -61,13 +61,16 @@ export default function App() {
         </div>
 
         <div className="mascot-wrap">
-          <span className="corner corner-left" />
-          <span className="corner corner-top" />
-          <img
-            className="mascot"
-            src={`${assets}/1cad1.png`}
-            alt="1FC Trade mascot holding a one rupee coin"
-          />
+          <div className="mascot-art">
+            <img
+              className="mascot"
+              src={`${assets}/1cad1.png`}
+              alt="1FC Trade mascot holding a one rupee coin"
+            />
+
+            <span className="corner corner-left" />
+            <span className="corner corner-top" />
+          </div>
         </div>
 
         <div className="downloads" aria-label="Download the 1FC Trade app">
