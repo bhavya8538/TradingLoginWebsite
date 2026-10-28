@@ -1,0 +1,596 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "DM Serif Text:Regular";
+  src: url("https://static.figma.com/font/DMSerifText-Regular_2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Inter:Semi Bold";
+  src: url("https://static.figma.com/font/Inter_1") format("woff2");
+  font-style: normal;
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Noto Sans Math:Regular";
+  src: url("https://static.figma.com/font/NotoSansMath-Regular_1") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Noto Sans Symbols2:Regular";
+  src: url("https://static.figma.com/font/NotoSansSymbols2-Regular_5") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Noto Sans Symbols:Medium";
+  src: url("https://static.figma.com/font/NotoSansSymbols-VF_2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Noto Sans:Medium";
+  src: url("https://static.figma.com/font/NotoSans-VF_3") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Poppins:Medium";
+  src: url("https://static.figma.com/font/Poppins-Medium_6") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Poppins:Regular";
+  src: url("https://static.figma.com/font/Poppins-Regular_6") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Poppins:SemiBold";
+  src: url("https://static.figma.com/font/Poppins-SemiBold_6") format("woff2");
+  font-style: normal;
+  font-weight: 600;
+}
+
+:root {
+  color: #fff;
+  background: #043335;
+  font-family: "Poppins:Regular", sans-serif;
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.page-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 69%) minmax(390px, 31%);
+  min-height: 100dvh;
+  overflow: hidden;
+  background: #043335;
+}
+
+.promo-panel,
+.login-panel {
+  position: relative;
+  min-height: 100dvh;
+}
+
+.promo-panel {
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  isolation: isolate;
+}
+
+.grid-wrap,
+.chart-wrap,
+.ellipse,
+.mascot {
+  position: absolute;
+  pointer-events: none;
+}
+
+.grid-wrap {
+  z-index: -4;
+  left: -64.65%;
+  top: -65.27%;
+  display: flex;
+  width: 196.37%;
+  height: 215.6%;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-art {
+  width: 92.62%;
+  height: 85.15%;
+  max-width: none;
+  object-fit: cover;
+  transform: rotate(-7.27deg);
+}
+
+.chart-wrap {
+  z-index: -2;
+  left: -30.51%;
+  top: -48.02%;
+  width: 146.3%;
+  height: 170.33%;
+  overflow: hidden;
+  opacity: 0.16;
+}
+
+.chart-art {
+  position: absolute;
+  top: 13.55%;
+  left: 0.01%;
+  width: 100.05%;
+  height: 100%;
+  max-width: none;
+  object-fit: fill;
+}
+
+.ellipse {
+  z-index: -3;
+}
+
+.ellipse-one {
+  left: -22.05%;
+  top: 54.62%;
+  width: 82.87%;
+  height: auto;
+  transform: rotate(-0.27deg);
+}
+
+.ellipse-two {
+  left: 70.08%;
+  top: -24.71%;
+  width: 48.71%;
+  height: auto;
+  transform: rotate(-0.27deg);
+}
+
+.promo-copy {
+  position: absolute;
+  z-index: 2;
+  top: 9%;
+  left: 5.3%;
+  width: min(47%, 680px);
+}
+
+.promo-copy h1,
+.promo-copy h2,
+.promo-copy p {
+  margin: 0;
+}
+
+.promo-copy h1 {
+  font-family: "Poppins:SemiBold", sans-serif;
+  font-size: clamp(2.2rem, 3.35vw, 4rem);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.03em;
+}
+
+.promo-copy .rupee {
+  font-family: "Inter:Semi Bold", sans-serif;
+}
+
+.promo-copy .one {
+  font-family: "DM Serif Text:Regular", serif;
+  font-size: 1.1em;
+}
+
+.promo-copy h2 {
+  margin-top: 0.08em;
+  font-family: "Poppins:SemiBold", sans-serif;
+  font-size: clamp(1.7rem, 2.5vw, 3rem);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.promo-copy p {
+  margin-top: 1.25em;
+  max-width: 620px;
+  color: rgba(255, 255, 255, 0.74);
+  font-family: "Poppins:Medium", sans-serif;
+  font-size: clamp(0.75rem, 0.94vw, 1.12rem);
+  line-height: 1.43;
+  letter-spacing: -0.03em;
+}
+
+.mascot-wrap {
+  position: absolute;
+  z-index: 1;
+  top: 2.86%;
+  left: 55.89%;
+  width: 42.82%;
+  height: 93.63%;
+}
+
+.mascot {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.corner {
+  position: absolute;
+  z-index: 3;
+  width: 42px;
+  height: 42px;
+  border: 18px solid #eae25a;
+}
+
+.corner-left {
+  top: 12.56%;
+  left: 4.41%;
+  border-top: 0;
+  border-right: 0;
+}
+
+.corner-top {
+  top: -1.29%;
+  left: 32.8%;
+  border-bottom: 0;
+  border-left: 0;
+}
+
+.downloads {
+  position: absolute;
+  z-index: 3;
+  left: 7.7%;
+  bottom: 4.2%;
+  display: flex;
+  gap: clamp(26px, 5vw, 70px);
+}
+
+.downloads a {
+  display: grid;
+  justify-items: center;
+  text-decoration: none;
+}
+
+.qr {
+  width: clamp(105px, 10.3vw, 198px);
+  aspect-ratio: 1;
+  object-fit: cover;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.59);
+}
+
+.store-badge {
+  width: clamp(82px, 7.3vw, 140px);
+  aspect-ratio: 1;
+  margin-top: -1.6rem;
+  object-fit: cover;
+}
+
+.registration {
+  position: absolute;
+  right: 2%;
+  bottom: 2%;
+  margin: 0;
+  font-family: "Poppins:Medium", sans-serif;
+  font-size: clamp(0.45rem, 0.72vw, 0.875rem);
+  letter-spacing: -0.01em;
+}
+
+.login-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(14px, 1.3vw, 26px) clamp(24px, 2.35vw, 45px) 18px;
+  background: #043335;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.brand {
+  width: min(68%, 327px);
+  height: auto;
+  object-fit: contain;
+}
+
+.company {
+  margin: -0.2rem 0 0;
+  font-family: "Poppins:Medium", sans-serif;
+  font-size: clamp(1.25rem, 2.08vw, 2.5rem);
+  font-weight: 500;
+  line-height: 0.97;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.welcome {
+  margin-top: clamp(8px, 1.5vh, 24px);
+  text-align: center;
+}
+
+.welcome h3 {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.84);
+  font-family: "Poppins:Medium", sans-serif;
+  font-size: clamp(1.1rem, 1.56vw, 1.875rem);
+  font-weight: 500;
+  line-height: 0.97;
+  letter-spacing: -0.03em;
+}
+
+.welcome p {
+  margin: 0.35rem 0 0;
+  color: #737373;
+  font-size: clamp(0.58rem, 0.68vw, 0.81rem);
+  letter-spacing: -0.01em;
+}
+
+form {
+  width: 100%;
+  margin-top: clamp(12px, 2vh, 30px);
+}
+
+.field {
+  display: block;
+  margin-bottom: clamp(10px, 1.6vh, 20px);
+}
+
+.field-label {
+  display: block;
+  margin: 0 0 0.5rem 0.35rem;
+  font-family: "Poppins:Medium", sans-serif;
+  font-size: clamp(0.68rem, 0.84vw, 1rem);
+  letter-spacing: -0.01em;
+}
+
+.input-shell {
+  display: flex;
+  align-items: center;
+  height: clamp(48px, 6.1vh, 66px);
+  padding: 0 clamp(13px, 1.2vw, 20px);
+  border: 1px solid #e2e2e2;
+  border-radius: 12px;
+}
+
+.input-shell > img {
+  flex: 0 0 auto;
+  width: clamp(20px, 1.8vw, 35px);
+  max-height: 38px;
+}
+
+.input-shell input {
+  min-width: 0;
+  flex: 1;
+  height: 100%;
+  margin-left: clamp(12px, 1.4vw, 28px);
+  border: 0;
+  outline: 0;
+  color: white;
+  background: transparent;
+  font-family: "Poppins:Regular", sans-serif;
+  font-size: clamp(0.68rem, 0.84vw, 1rem);
+  letter-spacing: -0.01em;
+}
+
+.input-shell input::placeholder {
+  color: #a0a0a0;
+  opacity: 1;
+}
+
+.eye-button {
+  padding: 3px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.eye-button img {
+  display: block;
+  width: clamp(22px, 1.9vw, 36px);
+}
+
+.otp-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(84px, 7vw, 135px);
+  align-items: end;
+  gap: 10px;
+}
+
+.otp-row .field {
+  margin-bottom: 0;
+}
+
+.otp-button {
+  height: clamp(48px, 6.1vh, 66px);
+  border: 1px solid #eae26a;
+  border-radius: 12px;
+  color: #eae26a;
+  background: transparent;
+  font-family: "Poppins:Medium", sans-serif;
+  font-size: clamp(0.72rem, 0.89vw, 1.06rem);
+  cursor: pointer;
+}
+
+.forgot {
+  display: block;
+  margin: 0.55rem 0 0.75rem auto;
+  padding: 0;
+  border: 0;
+  color: #eae26a;
+  background: transparent;
+  font-family: "Poppins:Medium", sans-serif;
+  font-size: clamp(0.65rem, 0.83vw, 1rem);
+  cursor: pointer;
+}
+
+.login-button,
+.account-button {
+  width: 100%;
+  height: clamp(48px, 6.5vh, 70px);
+  border-radius: 12px;
+  font-family: "Poppins:Medium", sans-serif;
+  font-size: clamp(0.8rem, 0.98vw, 1.18rem);
+  cursor: pointer;
+}
+
+.login-button {
+  border: 1px solid #e2e2e2;
+  color: #fffefe;
+  background: #043335;
+}
+
+.status {
+  margin: 0.35rem 0 -0.25rem;
+  color: #eae26a;
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+.or {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  margin: clamp(10px, 1.6vh, 18px) 9%;
+  color: #a0a0a0;
+  font-family: "Poppins:Medium", sans-serif;
+  font-size: clamp(0.7rem, 0.83vw, 1rem);
+}
+
+.or img {
+  width: 100%;
+  height: 1px;
+}
+
+.account-button {
+  border: 1px solid #e2e2e2;
+  color: #005a43;
+  background: #eae26a;
+}
+
+footer {
+  margin-top: auto;
+  padding-top: 12px;
+  font-size: clamp(0.58rem, 0.73vw, 0.875rem);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline: 3px solid #eae26a;
+  outline-offset: 3px;
+}
+
+button:hover {
+  filter: brightness(1.08);
+}
+
+@media (max-width: 980px) {
+  .page-shell {
+    grid-template-columns: 1fr;
+    overflow: visible;
+  }
+
+  .promo-panel {
+    min-height: 720px;
+  }
+
+  .login-panel {
+    min-height: 760px;
+    padding-inline: max(24px, calc((100vw - 560px) / 2));
+  }
+
+  .mascot-wrap {
+    width: 58%;
+    left: auto;
+    right: 0;
+  }
+
+  .promo-copy {
+    width: 54%;
+  }
+}
+
+@media (max-width: 620px) {
+  .promo-panel {
+    min-height: 660px;
+  }
+
+  .promo-copy {
+    top: 5%;
+    left: 6%;
+    width: 88%;
+  }
+
+  .promo-copy h1 {
+    font-size: 2.1rem;
+  }
+
+  .promo-copy h2 {
+    font-size: 1.55rem;
+  }
+
+  .promo-copy p {
+    max-width: 62%;
+    font-size: 0.68rem;
+  }
+
+  .mascot-wrap {
+    top: 18%;
+    right: -17%;
+    width: 88%;
+    height: 68%;
+  }
+
+  .downloads {
+    left: 6%;
+    bottom: 5%;
+    gap: 22px;
+  }
+
+  .qr {
+    width: 95px;
+  }
+
+  .store-badge {
+    width: 78px;
+  }
+
+  .registration {
+    right: 4%;
+    bottom: 1%;
+    max-width: 58%;
+    font-size: 0.38rem;
+    text-align: right;
+  }
+
+  .corner {
+    width: 30px;
+    height: 30px;
+    border-width: 12px;
+  }
+
+  .company {
+    font-size: 1.2rem;
+  }
+}
