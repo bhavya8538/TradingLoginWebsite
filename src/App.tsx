@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 
-const assets = "/assets";
+const assets = `${import.meta.env.BASE_URL}assets`;
 
 function Field({
   label,
